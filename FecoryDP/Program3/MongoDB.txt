@@ -1,0 +1,41 @@
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.MongoCollection;
+import org.bson.Document;
+
+public class MongoDB implements MyDatabase {
+    // MongoDB connection parameters
+    private static final String MONGODB_HOST = "localhost";
+    private static final int MONGODB_PORT = 27017;
+    private static final String MONGODB_DATABASE_NAME = "mydatabase";
+
+    public static void main(String[] args) {
+        // MongoDB connection URI
+        String connectionString = String.format("mongodb://%s:%d", MONGODB_HOST, MONGODB_PORT);
+        
+        // Connect to MongoDB server
+        try {
+			MongoClient mongoClient = new MongoClient(new MongoClientURI(connectionString))
+            System.out.println("Connected to MongoDB server.");
+
+            // Get a handle to the "mydatabase" database
+            MongoDatabase database = mongoClient.getDatabase(MONGODB_DATABASE_NAME);
+            System.out.println("Connected to database: " + database.getName());
+
+            // Perform operations with MongoDB database
+            // For example, you can retrieve a collection and perform CRUD operations
+            MongoCollection<Document> collection = database.getCollection("mycollection");
+
+            // Insert a document into the collection
+            Document document = new Document("name", "John Doe")
+                                      .append("age", 30)
+                                      .append("city", "New York");
+            collection.insertOne(document);
+            System.out.println("Document inserted successfully.");
+
+        } catch (Exception e) {
+            System.err.println("Failed to connect to MongoDB server: " + e.getMessage());
+        }
+    }
+}

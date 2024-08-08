@@ -1,0 +1,85 @@
+class ContactInfo {
+    private String homeAddress;
+    private String emailAddress;
+    private int telephoneNumber; //12025550156
+	public ContactInfo(String homeAddress,String emailAddress,int telephoneNumber)
+	{
+		this.homeAddress = homeAddress;
+		this.emailAddress = emailAddress;
+		this.telephoneNumber = telephoneNumber;
+	}
+	public getHomeAddress(){
+		return homeAddress;
+	}
+	public getEmailAddress(){
+		return emailAddress;
+	}
+	public getTelephoneNumber(){
+		return telephoneNumber;
+	}
+}
+
+class StudentId {
+    private String idNumber;//A-123456789
+    private String bloodGroup;
+    private String accountNumber;
+	public StudentId(String idNumber,String bloodGroup,String accountNumber)
+	{
+		this.accountNumber = accountNumber;
+		this.bloodGroup = bloodGroup;
+		this.idNumber = idNumber;
+	}
+	public getAccountNumber(){
+		return accountNumber;
+	}
+	public getBloodGroup(){
+		return bloodGroup;
+	}
+	public getIdNumber(){
+		return idNumber;
+	}
+}
+public class Student {
+    private String name;
+    private int age;
+    private String grade;
+	private ContactInfo contactInfo;//Student HAS-A ContactInfo
+    private StudentId studentId;//Student HAS-A StudentId
+	public Student(String name,int age,int grade,StudentId studentId){
+		this.name = name;
+		this.age = age;
+		this.grade = grade;
+		this.studentId = studentId;
+	}
+	public Student(String name,int age,int grade,StudentId studentId,ContactInfo contactInfo){
+		this.name = name;
+		this.age = age;
+		this.grade = grade;
+		this.studentId = studentId;
+		this.contactInfo = contactInfo;
+	}
+	public setContactInfo(ContactInfo contactInfo)
+	{
+		this.contactInfo = contactInfo;
+	}
+	
+    public void study() {
+        System.out.println("Study");
+    }
+}
+public class AggregationExample3(){
+	public static void main(String [] args)
+	{
+		String homeAddress = "115,dharamnath Prabhu society, Naroda Ahmedabad";
+		String emailAddress = "vaghelaparikshitsinh257@gmail.com";
+		int telephoneNumber = 84691333412;
+		ContactInfo contactInfo = new ContactInfo(homeAddress,emailAddress,telephoneNumber);
+		String idNumber = "212308020";
+		String bloodGroup = "B+";
+		String accountNumber = "21165230";
+		StudentId studentId = new StudentId(idNumber,bloodGroup,accountNumber);
+		
+		Student student =new Student("Parikshit",22,"A+",studentId);
+		student.setContactInfo(contactInfo);
+	}
+}

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Application8</string>
+    <string-array name="animation_array">
+        <item>Scale Animation</item>
+        <item>Translate Animation</item>
+        <item>Alpha Animation</item>
+        <item>Rotate Animation</item>
+    </string-array>
+</resources>

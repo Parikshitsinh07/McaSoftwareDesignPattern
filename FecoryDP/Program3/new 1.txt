@@ -1,0 +1,14 @@
+
+CREATE TABLE IF NOT EXISTS public."Student"
+(
+    "StudentId" integer NOT NULL,
+    "StudentName" "char"[],
+    "Course" "char"[],
+    "ContectNumber" "char"[],
+    CONSTRAINT "Student_pkey" PRIMARY KEY ("StudentId")
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public."Student"
+    OWNER to postgres;
